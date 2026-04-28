@@ -1,6 +1,6 @@
 # Selenium UI Regression Suite
 
-A Python Selenium UI automation project using **PyTest**, **Page Object Model**, and **HTML reporting**.
+The Python Selenium UI automation project using **PyTest**, **Page Object Model**, and **HTML reporting**.
 
 This project tests a demo e-commerce web application: [SauceDemo](https://www.saucedemo.com/)
 
@@ -16,14 +16,14 @@ This project demonstrates practical QA Automation skills:
 - CI/CD execution with GitHub Actions
 - Clear QA documentation and defect-style thinking
 
-## Tech Stack
+## Stack
 
 - Python 3.10+
 - Selenium
 - PyTest
 - webdriver-manager
 - pytest-html
-- GitHub Actions
+- PyGithub
 
 ## Test Coverage
 
