@@ -164,22 +164,6 @@ Workflow file:
 .github/workflows/ui-tests.yml
 ```
 
-## Demo Talking Points
-
-You can explain this project in an interview like this:
-
-> I created a Selenium UI regression suite for a demo e-commerce application. The framework uses Python, PyTest, Selenium, and the Page Object Model. It validates login, inventory, cart, checkout, sorting, and error messages. I also added HTML test reports and GitHub Actions so tests run automatically in CI/CD.
-
-## Future Improvements
-
-- Add screenshots on test failure
-- Add Allure reporting
-- Add cross-browser matrix testing
-- Add visual regression testing
-- Add Docker support
-- Add test data from JSON files
-- Add integration with Jira-style defect tracking
-
 ## Disclaimer
 
 This project uses SauceDemo, a public demo application for test automation practice.
