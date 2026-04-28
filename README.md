@@ -77,26 +77,13 @@ selenium-ui-regression-suite/
 
 ## Installation
 
-Clone the repository:
-
-```bash
-git clone https://github.com/YOUR-USERNAME/selenium-ui-regression-suite.git
-cd selenium-ui-regression-suite
-```
-
 Create and activate a virtual environment:
 
 ```bash
-python -m venv venv
+python -m venv .venv
 ```
 
-On Windows:
-
-```bash
-venv\Scripts\activate
-```
-
-On macOS/Linux:
+Activate virtal environment:
 
 ```bash
 source venv/bin/activate
