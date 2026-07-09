@@ -4,6 +4,8 @@ The Python Selenium UI automation project using **PyTest**, **Page Object Model*
 
 This project tests a demo e-commerce web application: [SauceDemo](https://www.saucedemo.com/)
 
+![Screenshot of report from execution.](pytest-report.png)
+
 ## Project Goals
 
 This project demonstrates practical QA Automation skills:
