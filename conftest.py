@@ -5,6 +5,15 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
+from pages.cart_page import CartPage
+from pages.checkout_page import CheckoutPage
+from pages.inventory_page import InventoryPage
+from pages.login_page import LoginPage
+
+
+STANDARD_USER = "standard_user"
+STANDARD_PASSWORD = "secret_sauce"
+
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -57,3 +66,26 @@ def driver(request):
     driver.implicitly_wait(2)
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def logged_in_inventory_page(driver):
+    login_page = LoginPage(driver)
+    inventory_page = InventoryPage(driver)
+
+    login_page.open()
+    login_page.login(STANDARD_USER, STANDARD_PASSWORD)
+
+    return inventory_page
+
+
+@pytest.fixture
+def checkout_page_with_item(logged_in_inventory_page):
+    cart_page = CartPage(logged_in_inventory_page.driver)
+    checkout_page = CheckoutPage(logged_in_inventory_page.driver)
+
+    logged_in_inventory_page.add_product_to_cart("Sauce Labs Backpack")
+    logged_in_inventory_page.open_cart()
+    cart_page.start_checkout()
+
+    return checkout_page

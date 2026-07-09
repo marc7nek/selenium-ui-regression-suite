@@ -39,6 +39,7 @@ This project demonstrates practical QA Automation skills:
 - User can add an item to the cart
 - User can remove an item from the cart
 - Cart badge updates correctly
+- Added items are visible in the cart
 - Product sorting works
 
 ### Cart and Checkout Tests
@@ -83,7 +84,7 @@ Create and activate a virtual environment:
 python -m venv .venv
 ```
 
-Activate virtal environment:
+Activate virtual environment:
 
 ```bash
 source venv/bin/activate

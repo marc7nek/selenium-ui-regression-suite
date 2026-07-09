@@ -1,3 +1,4 @@
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -17,6 +18,14 @@ class BasePage:
 
     def find_all(self, locator):
         return self.wait.until(EC.presence_of_all_elements_located(locator))
+
+    def find_optional(self, locator, timeout=2):
+        try:
+            return WebDriverWait(self.driver, timeout).until(
+                EC.presence_of_element_located(locator)
+            )
+        except TimeoutException:
+            return None
 
     def click(self, locator):
         self.wait.until(EC.element_to_be_clickable(locator)).click()

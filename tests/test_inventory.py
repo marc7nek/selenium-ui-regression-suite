@@ -1,17 +1,5 @@
 import pytest
-from pages.login_page import LoginPage
-from pages.inventory_page import InventoryPage
-
-
-@pytest.fixture
-def logged_in_inventory_page(driver):
-    login_page = LoginPage(driver)
-    inventory_page = InventoryPage(driver)
-
-    login_page.open()
-    login_page.login("standard_user", "secret_sauce")
-
-    return inventory_page
+from pages.cart_page import CartPage
 
 
 @pytest.mark.smoke
@@ -23,18 +11,32 @@ def test_inventory_page_displays_products(logged_in_inventory_page):
 
 @pytest.mark.regression
 def test_user_can_add_item_to_cart(logged_in_inventory_page):
-    logged_in_inventory_page.add_backpack_to_cart()
+    logged_in_inventory_page.add_product_to_cart("Sauce Labs Backpack")
 
     assert logged_in_inventory_page.get_cart_badge_count() == "1"
 
 
 @pytest.mark.regression
 def test_user_can_remove_item_from_cart(logged_in_inventory_page):
-    logged_in_inventory_page.add_backpack_to_cart()
-    logged_in_inventory_page.remove_backpack_from_cart()
+    logged_in_inventory_page.add_product_to_cart("Sauce Labs Backpack")
+    logged_in_inventory_page.remove_product_from_cart("Sauce Labs Backpack")
 
-    product_names = logged_in_inventory_page.get_product_names()
-    assert "Sauce Labs Backpack" in product_names
+    assert logged_in_inventory_page.get_cart_badge_count() == "0"
+
+
+@pytest.mark.regression
+def test_added_items_are_displayed_in_cart(logged_in_inventory_page):
+    cart_page = CartPage(logged_in_inventory_page.driver)
+
+    logged_in_inventory_page.add_product_to_cart("Sauce Labs Backpack")
+    logged_in_inventory_page.add_product_to_cart("Sauce Labs Bike Light")
+    logged_in_inventory_page.open_cart()
+
+    assert cart_page.get_cart_item_count() == 2
+    assert cart_page.get_cart_item_names() == [
+        "Sauce Labs Backpack",
+        "Sauce Labs Bike Light",
+    ]
 
 
 @pytest.mark.regression
