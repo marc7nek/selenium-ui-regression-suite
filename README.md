@@ -81,19 +81,19 @@ selenium-ui-regression-suite/
 Create and activate a virtual environment:
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 ```
 
 Activate virtual environment:
 
 ```bash
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 Install dependencies:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ## Run Tests
@@ -101,37 +101,37 @@ pip install -r requirements.txt
 Run all tests:
 
 ```bash
-pytest
+python -m pytest
 ```
 
 Run tests with an HTML report:
 
 ```bash
-pytest --html=reports/report.html --self-contained-html
+python -m pytest --html=reports/report.html --self-contained-html
 ```
 
 Run only login tests:
 
 ```bash
-pytest tests/test_login.py
+python -m pytest tests/test_login.py
 ```
 
 Run tests in headed mode:
 
 ```bash
-pytest --headed
+python -m pytest --headed
 ```
 
 Run tests in Chrome:
 
 ```bash
-pytest --browser chrome
+python -m pytest --browser chrome
 ```
 
 Run tests in Firefox:
 
 ```bash
-pytest --browser firefox
+python -m pytest --browser firefox
 ```
 
 ## Test Reports
@@ -139,7 +139,7 @@ pytest --browser firefox
 After running:
 
 ```bash
-pytest --html=reports/report.html --self-contained-html
+python -m pytest --html=reports/report.html --self-contained-html
 ```
 
 Open:
