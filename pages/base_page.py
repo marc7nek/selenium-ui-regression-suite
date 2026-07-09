@@ -30,10 +30,33 @@ class BasePage:
     def click(self, locator):
         self.wait.until(EC.element_to_be_clickable(locator)).click()
 
+    def js_click(self, locator):
+        element = self.wait.until(EC.element_to_be_clickable(locator))
+        self.driver.execute_script("arguments[0].click();", element)
+
     def type_text(self, locator, text):
-        element = self.find(locator)
+        element = self.wait.until(EC.element_to_be_clickable(locator))
         element.clear()
         element.send_keys(text)
+        if element.get_attribute("value") == text:
+            return
+
+        self.driver.execute_script(
+            """
+            const element = arguments[0];
+            const value = arguments[1];
+            const setter = Object.getOwnPropertyDescriptor(
+                window.HTMLInputElement.prototype,
+                "value"
+            ).set;
+
+            setter.call(element, value);
+            element.dispatchEvent(new Event("input", { bubbles: true }));
+            element.dispatchEvent(new Event("change", { bubbles: true }));
+            """,
+            element,
+            text,
+        )
 
     def get_text(self, locator):
         return self.find(locator).text

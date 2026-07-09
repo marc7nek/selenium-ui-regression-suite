@@ -46,6 +46,8 @@ This project demonstrates practical QA Automation skills:
 
 - User can open cart
 - Checkout form validates missing first name
+- Checkout form validates missing last name and postal code
+- Checkout overview displays item and price summary
 - User can complete checkout successfully
 
 ## Project Structure
